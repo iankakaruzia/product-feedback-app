@@ -24,14 +24,14 @@ model User {
 
   comments  Comment[]
   upvotes   Upvote[]
-  requests  Request[]
-  replies   Reply[]   @relation(name: "UserReplies")
-  repliesTo Reply[]   @relation(name: "UserRepliedTo")
+  feedbacks Feedback[]
+  replies   Reply[]    @relation(name: "UserReplies")
+  repliesTo Reply[]    @relation(name: "UserRepliedTo")
 
   @@map("users")
 }
 
-model Request {
+model Feedback {
   id          Int      @id @default(autoincrement())
   title       String
   description String
@@ -46,7 +46,7 @@ model Request {
   upvotes  Upvote[]
   comments Comment[]
 
-  @@map("requests")
+  @@map("feedbacks")
 }
 
 model Comment {
@@ -59,8 +59,8 @@ model Comment {
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
 
-  request   Request @relation(fields: [requestId], references: [id])
-  requestId Int
+  feedback   Feedback @relation(fields: [feedbackId], references: [id])
+  feedbackId Int
 
   replies Reply[]
 
@@ -93,8 +93,8 @@ model Upvote {
   author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
 
-  request   Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
-  requestId Int
+  feedback   Feedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+  feedbackId Int
 
   @@map("upvotes")
 }
