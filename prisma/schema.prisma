@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String?  @unique
+  username  String?  @unique
+  name      String?
+  picture   String?
+  role      Role     @default(USER)
+
+  comments  Comment[]
+  upvotes   Upvote[]
+  requests  Request[]
+  replies   Reply[]   @relation(name: "UserReplies")
+  repliesTo Reply[]   @relation(name: "UserRepliedTo")
+
+  @@map("users")
+}
+
+model Request {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  category    Category
+  status      Status   @default(SUGGESTION)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  upvotes  Upvote[]
+  comments Comment[]
+
+  @@map("requests")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  edited    Boolean  @default(false)
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  request   Request @relation(fields: [requestId], references: [id])
+  requestId Int
+
+  replies Reply[]
+
+  @@map("comments")
+}
+
+model Reply {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  edited    Boolean  @default(false)
+
+  replyingTo   User @relation(name: "UserRepliedTo", fields: [replyingToId], references: [id])
+  replyingToId Int
+
+  author   User @relation(name: "UserReplies", fields: [authorId], references: [id])
+  authorId Int
+
+  comment   Comment @relation(fields: [commentId], references: [id])
+  commentId Int
+
+  @@map("replies")
+}
+
+model Upvote {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  request   Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requestId Int
+
+  @@map("upvotes")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  SUGGESTION
+  PLANNED
+  IN_PROGRESS
+  LIVE
+}
+
+enum Category {
+  FEATURE
+  UI
+  UX
+  ENHANCEMENT
+  BUG
+}
