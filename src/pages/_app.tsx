@@ -3,9 +3,36 @@ import { withTRPC } from '@trpc/next'
 import { AppRouter } from 'server/routers'
 import superjson from 'superjson'
 import type { AppProps } from 'next/app'
+import NextProgress from 'nextjs-progressbar'
+import { UserProvider } from '@auth0/nextjs-auth0'
+import { Toaster } from 'react-hot-toast'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <UserProvider>
+      <NextProgress
+        color='#AD1FEA'
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={5}
+      />
+      <Toaster position='top-right' />
+      <Head>
+        <title>Product Feedback</title>
+        <link
+          rel='shortcut icon'
+          href='/assets/favicon-32x32.png'
+          type='image/png'
+        />
+        <meta
+          name='description'
+          content='Send us your feedback about our product'
+        />
+      </Head>
+      <Component {...pageProps} />
+    </UserProvider>
+  )
 }
 
 export default withTRPC<AppRouter>({
