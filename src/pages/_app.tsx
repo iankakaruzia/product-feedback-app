@@ -7,30 +7,33 @@ import NextProgress from 'nextjs-progressbar'
 import { UserProvider } from '@auth0/nextjs-auth0'
 import { Toaster } from 'react-hot-toast'
 import Head from 'next/head'
+import { FilterByProvider } from 'hooks/use-filter-by'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
-      <NextProgress
-        color='#AD1FEA'
-        startPosition={0.3}
-        stopDelayMs={200}
-        height={5}
-      />
-      <Toaster position='top-right' />
-      <Head>
-        <title>Product Feedback</title>
-        <link
-          rel='shortcut icon'
-          href='/assets/favicon-32x32.png'
-          type='image/png'
+      <FilterByProvider>
+        <NextProgress
+          color='#AD1FEA'
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={5}
         />
-        <meta
-          name='description'
-          content='Send us your feedback about our product'
-        />
-      </Head>
-      <Component {...pageProps} />
+        <Toaster position='top-right' />
+        <Head>
+          <title>Product Feedback</title>
+          <link
+            rel='shortcut icon'
+            href='/assets/favicon-32x32.png'
+            type='image/png'
+          />
+          <meta
+            name='description'
+            content='Send us your feedback about our product'
+          />
+        </Head>
+        <Component {...pageProps} />
+      </FilterByProvider>
     </UserProvider>
   )
 }
