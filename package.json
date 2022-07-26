@@ -55,7 +55,8 @@
   },
   "lint-staged": {
     "src/**/*": [
-      "yarn lint --cache --cache-location .next/cache/eslint/ --fix"
+      "yarn lint --cache --cache-location .next/cache/eslint/ --fix",
+      "yarn test --findRelatedTests --bail"
     ]
   },
   "engines": {
