@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.9.1",
+    "@headlessui/react": "^1.6.6",
     "@hookform/resolvers": "^2.9.7",
     "@prisma/client": "4.1.0",
     "@trpc/client": "^9.26.2",
