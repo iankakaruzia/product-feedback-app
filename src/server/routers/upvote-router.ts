@@ -1,11 +1,9 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { z } from 'zod'
+import { updateUpvoteInput } from 'shared/inputs/upvote'
 
 export const upvoteRouter = createRouter().mutation('update-upvote', {
-  input: z.object({
-    upvoteId: z.number()
-  }),
+  input: updateUpvoteInput,
   async resolve({ ctx, input }) {
     if (!ctx.session?.user.email) {
       throw new trpc.TRPCError({

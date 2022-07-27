@@ -1,12 +1,10 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { z } from 'zod'
+import { createCommentInput, getCommentsInput } from 'shared/inputs/comments'
 
 export const commentRouter = createRouter()
   .query('get-comments', {
-    input: z.object({
-      feedbackId: z.number()
-    }),
+    input: getCommentsInput,
     async resolve({ ctx, input }) {
       const commentsWithReplies = await ctx.prisma.comment.findMany({
         where: {
@@ -33,10 +31,7 @@ export const commentRouter = createRouter()
     }
   })
   .mutation('create-comment', {
-    input: z.object({
-      feedbackId: z.number(),
-      content: z.string()
-    }),
+    input: createCommentInput,
     async resolve({ ctx, input }) {
       if (!ctx.session?.user.email) {
         throw new trpc.TRPCError({

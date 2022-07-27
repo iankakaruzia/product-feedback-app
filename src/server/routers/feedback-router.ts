@@ -1,5 +1,4 @@
 import * as trpc from '@trpc/server'
-import { z } from 'zod'
 import { createRouter } from 'server/utils/create-router'
 import { Status, User } from '@prisma/client'
 import {
@@ -7,11 +6,14 @@ import {
   getIdFromCursor,
   groupRoadmapItems
 } from 'server/helpers/feedback'
-
-const CATEGORIES = ['FEATURE', 'UI', 'UX', 'ENHANCEMENT', 'BUG'] as const
-const STATUSES = ['SUGGESTION', 'PLANNED', 'IN_PROGRESS', 'LIVE'] as const
-const SORT_BY = ['UPVOTES', 'COMMENTS'] as const
-const ORDER_BY = ['ASC', 'DESC'] as const
+import {
+  createFeedbackInput,
+  deleteFeedbackInput,
+  getFeedbackInput,
+  getRoadmapReportInput,
+  getSuggestionsInput,
+  updateFeedbackInput
+} from 'shared/inputs/feedback'
 
 export const feedbackRouter = createRouter()
   .query('get-roadmap-items', {
@@ -30,9 +32,7 @@ export const feedbackRouter = createRouter()
     }
   })
   .query('get-roadmap-report', {
-    input: z.object({
-      currentUser: z.string().optional()
-    }),
+    input: getRoadmapReportInput,
     async resolve({ ctx, input }) {
       const feedbacks = await ctx.prisma.feedback.findMany({
         where: {
@@ -53,9 +53,9 @@ export const feedbackRouter = createRouter()
 
       let user: User | null = null
 
-      if (ctx.session?.user.email || input.currentUser) {
+      if (ctx.session?.user.email || input?.currentUser) {
         user = await ctx.prisma.user.findUnique({
-          where: { email: ctx.session?.user.email ?? input.currentUser }
+          where: { email: ctx.session?.user.email ?? input?.currentUser }
         })
       }
 
@@ -75,10 +75,7 @@ export const feedbackRouter = createRouter()
     }
   })
   .query('get-feedback', {
-    input: z.object({
-      feedbackId: z.number(),
-      currentUser: z.string().optional()
-    }),
+    input: getFeedbackInput,
     async resolve({ ctx, input }) {
       const feedback = await ctx.prisma.feedback.findUnique({
         where: { id: input.feedbackId },
@@ -123,16 +120,9 @@ export const feedbackRouter = createRouter()
     }
   })
   .query('get-suggestions', {
-    input: z.object({
-      limit: z.number().min(1).max(100).optional(),
-      cursor: z.string().optional(),
-      currentUser: z.string().optional(),
-      filterBy: z.enum(CATEGORIES).optional(),
-      sortBy: z.enum(SORT_BY).optional(),
-      orderBy: z.enum(ORDER_BY).optional()
-    }),
-    async resolve({ ctx, input }) {
-      const limit = input.limit ?? 10
+    input: getSuggestionsInput,
+    async resolve({ ctx, input = {} }) {
+      const limit = input?.limit ?? 10
       const { cursor, currentUser, filterBy, orderBy, sortBy } = input
       const sortByLowercased = sortBy?.toLowerCase() ?? 'upvotes'
       const orderByLowercased = orderBy?.toLowerCase() ?? 'desc'
@@ -212,11 +202,7 @@ export const feedbackRouter = createRouter()
     })
   })
   .mutation('create-feedback', {
-    input: z.object({
-      title: z.string(),
-      description: z.string(),
-      category: z.enum(CATEGORIES)
-    }),
+    input: createFeedbackInput,
     async resolve({ ctx, input }) {
       return ctx.prisma.feedback.create({
         data: {
@@ -233,9 +219,7 @@ export const feedbackRouter = createRouter()
     }
   })
   .mutation('delete-feedback', {
-    input: z.object({
-      feedbackId: z.number()
-    }),
+    input: deleteFeedbackInput,
     async resolve({ ctx, input }) {
       const feedback = await ctx.prisma.feedback.findUnique({
         where: { id: input.feedbackId }
@@ -261,13 +245,7 @@ export const feedbackRouter = createRouter()
     }
   })
   .mutation('update-feedback', {
-    input: z.object({
-      feedbackId: z.number(),
-      title: z.string(),
-      description: z.string(),
-      category: z.enum(CATEGORIES),
-      status: z.enum(STATUSES)
-    }),
+    input: updateFeedbackInput,
     async resolve({ ctx, input }) {
       const oldFeedback = await ctx.prisma.feedback.findUnique({
         where: { id: input.feedbackId }

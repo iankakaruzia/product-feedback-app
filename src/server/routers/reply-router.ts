@@ -1,13 +1,9 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { z } from 'zod'
+import { createReplyInput } from 'shared/inputs/reply'
 
 export const replyRouter = createRouter().mutation('create-reply', {
-  input: z.object({
-    commentId: z.number(),
-    content: z.string(),
-    replyingTo: z.string()
-  }),
+  input: createReplyInput,
   async resolve({ ctx, input }) {
     if (!ctx.session?.user.email) {
       throw new trpc.TRPCError({
