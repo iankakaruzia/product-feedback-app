@@ -9,10 +9,12 @@
     "lint": "eslint src",
     "prepare": "husky install",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.9.1",
+    "@hookform/resolvers": "^2.9.7",
     "@prisma/client": "4.1.0",
     "@trpc/client": "^9.26.2",
     "@trpc/next": "^9.26.2",
@@ -22,6 +24,7 @@
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.33.1",
     "react-hot-toast": "^2.3.0",
     "react-query": "3",
     "superjson": "^1.9.1",
