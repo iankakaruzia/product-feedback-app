@@ -17,6 +17,12 @@ describe('<UpvoteButton />', () => {
     expect(screen.getByRole('button')).toHaveClass('bg-blue-700 text-white')
   })
 
+  it('should render upvote button with custom class', () => {
+    render(<UpvoteButton count={0} className='custom-class' />)
+
+    expect(screen.getByRole('button')).toHaveClass('custom-class')
+  })
+
   it('should call onClick callback', async () => {
     const user = userEvent.setup()
     const onClick = jest.fn()
