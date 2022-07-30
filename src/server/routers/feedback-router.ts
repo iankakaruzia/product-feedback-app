@@ -5,7 +5,7 @@ import {
   createCursor,
   getIdFromCursor,
   groupRoadmapItems
-} from 'server/helpers/feedback'
+} from 'server/helpers/feedback.helper'
 import {
   createFeedbackInput,
   deleteFeedbackInput,
@@ -13,7 +13,9 @@ import {
   getRoadmapReportInput,
   getSuggestionsInput,
   updateFeedbackInput
-} from 'shared/inputs/feedback'
+} from 'shared/inputs/feedback.inputs'
+import { feedbackOutput } from 'shared/outputs/feedback.outputs'
+import { z } from 'zod'
 
 export const feedbackRouter = createRouter()
   .query('get-roadmap-items', {
@@ -33,6 +35,13 @@ export const feedbackRouter = createRouter()
   })
   .query('get-roadmap-report', {
     input: getRoadmapReportInput,
+    output: z
+      .object({
+        planned: z.array(feedbackOutput),
+        inProgress: z.array(feedbackOutput),
+        live: z.array(feedbackOutput)
+      })
+      .required(),
     async resolve({ ctx, input }) {
       const feedbacks = await ctx.prisma.feedback.findMany({
         where: {
@@ -76,6 +85,7 @@ export const feedbackRouter = createRouter()
   })
   .query('get-feedback', {
     input: getFeedbackInput,
+    output: feedbackOutput,
     async resolve({ ctx, input }) {
       const feedback = await ctx.prisma.feedback.findUnique({
         where: { id: input.feedbackId },
@@ -121,6 +131,12 @@ export const feedbackRouter = createRouter()
   })
   .query('get-suggestions', {
     input: getSuggestionsInput,
+    output: z
+      .object({
+        suggestions: z.array(feedbackOutput),
+        nextCursor: z.string().nullable()
+      })
+      .required(),
     async resolve({ ctx, input = {} }) {
       const limit = input?.limit ?? 10
       const { cursor, currentUser, filterBy, orderBy, sortBy } = input

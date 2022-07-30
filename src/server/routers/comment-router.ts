@@ -1,6 +1,9 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { createCommentInput, getCommentsInput } from 'shared/inputs/comments'
+import {
+  createCommentInput,
+  getCommentsInput
+} from 'shared/inputs/comments.inputs'
 
 export const commentRouter = createRouter()
   .query('get-comments', {

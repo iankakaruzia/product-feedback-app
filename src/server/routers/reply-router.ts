@@ -1,6 +1,6 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { createReplyInput } from 'shared/inputs/reply'
+import { createReplyInput } from 'shared/inputs/reply.inputs'
 
 export const replyRouter = createRouter().mutation('create-reply', {
   input: createReplyInput,

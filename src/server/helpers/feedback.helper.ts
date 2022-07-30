@@ -20,8 +20,8 @@ export function groupRoadmapItems(
     description: feedback.description,
     category: feedback.category,
     status: feedback.status,
-    upvotes: feedback.upvotes.length,
-    comments: feedback.comments.length,
+    upvotes: feedback.upvotes,
+    comments: feedback.comments,
     authorId: feedback.authorId,
     upvoted:
       user !== null

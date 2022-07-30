@@ -1,6 +1,6 @@
 import * as trpc from '@trpc/server'
 import { createRouter } from 'server/utils/create-router'
-import { updateUpvoteInput } from 'shared/inputs/upvote'
+import { updateUpvoteInput } from 'shared/inputs/upvote.inputs'
 
 export const upvoteRouter = createRouter().mutation('update-upvote', {
   input: updateUpvoteInput,
