@@ -1,5 +1,6 @@
-import { CATEGORIES, STATUSES } from 'shared/constants/feedback.constants'
 import { z } from 'zod'
+
+import { CATEGORIES, STATUSES } from 'shared/constants/feedback.constants'
 
 const currentUserInput = z.string().optional()
 const SORT_BY = ['UPVOTES', 'COMMENTS'] as const

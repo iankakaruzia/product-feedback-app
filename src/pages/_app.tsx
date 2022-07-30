@@ -1,13 +1,15 @@
 import '../styles/globals.css'
-import { withTRPC } from '@trpc/next'
-import { AppRouter } from 'server/routers'
-import superjson from 'superjson'
-import type { AppProps } from 'next/app'
-import NextProgress from 'nextjs-progressbar'
+
 import { UserProvider } from '@auth0/nextjs-auth0'
-import { Toaster } from 'react-hot-toast'
+import { withTRPC } from '@trpc/next'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import NextProgress from 'nextjs-progressbar'
+import { Toaster } from 'react-hot-toast'
+import superjson from 'superjson'
+
 import { FilterByProvider } from 'hooks/use-filter-by'
+import { AppRouter } from 'server/routers'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

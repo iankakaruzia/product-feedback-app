@@ -1,5 +1,6 @@
-import { CATEGORIES, STATUSES } from 'shared/constants/feedback.constants'
 import { z } from 'zod'
+
+import { CATEGORIES, STATUSES } from 'shared/constants/feedback.constants'
 
 export const feedbackOutput = z
   .object({

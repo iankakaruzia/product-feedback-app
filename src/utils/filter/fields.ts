@@ -1,4 +1,4 @@
-import { Category } from 'models/feedback'
+import { Category } from 'models/feedback.model'
 
 export type FilterOption = {
   label: string

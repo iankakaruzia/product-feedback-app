@@ -1,12 +1,12 @@
-import { Fragment, useState } from 'react'
-import Image from 'next/image'
 import { Menu, Transition } from '@headlessui/react'
-
-import { classNames } from 'utils/styles/class-names'
-import { AddFeedbackLink } from 'components/AddFeedbackLink'
-import { SortOption, sortOptions } from 'utils/filter/fields'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { Fragment, useState } from 'react'
+
+import { AddFeedbackLink } from 'components/AddFeedbackLink'
 import { getSortOptionFromQuery } from 'utils/filter'
+import { SortOption, sortOptions } from 'utils/filter/fields'
+import { classNames } from 'utils/styles/class-names'
 
 type BannerProps = {
   suggestionsCount: number

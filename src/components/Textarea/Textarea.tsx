@@ -1,8 +1,8 @@
 import {
   FieldValues,
-  UseFormRegister,
+  Path,
   RegisterOptions,
-  Path
+  UseFormRegister
 } from 'react-hook-form'
 
 import { classNames } from 'utils/styles/class-names'

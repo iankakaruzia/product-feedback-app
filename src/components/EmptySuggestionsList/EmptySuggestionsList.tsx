@@ -1,5 +1,6 @@
-import { AddFeedbackLink } from 'components/AddFeedbackLink'
 import Image from 'next/image'
+
+import { AddFeedbackLink } from 'components/AddFeedbackLink'
 
 export function EmptySuggestionsList() {
   return (

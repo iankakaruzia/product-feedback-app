@@ -1,4 +1,4 @@
-import { Status } from 'models/feedback'
+import { Status } from 'models/feedback.model'
 
 export function formatStatus(status: Status) {
   const formatedStatus: Record<Status, string> = {

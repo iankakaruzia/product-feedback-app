@@ -1,6 +1,7 @@
-import { Category } from 'models/feedback'
 import { useRouter } from 'next/router'
 import { createContext, ReactNode, useContext, useState } from 'react'
+
+import { Category } from 'models/feedback.model'
 import { getCategoryFromQuery } from 'utils/filter'
 import { FilterOption, filterOptions } from 'utils/filter/fields'
 

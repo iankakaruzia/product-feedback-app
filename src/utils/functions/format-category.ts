@@ -1,4 +1,4 @@
-import { Category } from 'models/feedback'
+import { Category } from 'models/feedback.model'
 
 export function formatCategory(category: Category) {
   const formatedCategory: Record<Category, string> = {

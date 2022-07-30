@@ -1,10 +1,10 @@
 import {
-  RegisterOptions,
-  UseFormRegister,
-  Path,
   DeepMap,
   FieldError,
-  FieldValues
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister
 } from 'react-hook-form'
 
 import { classNames } from 'utils/styles/class-names'
