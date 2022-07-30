@@ -26,7 +26,7 @@ export const upvoteRouter = createRouter().mutation('update-upvote', {
     }
 
     const feedback = await ctx.prisma.feedback.findUnique({
-      where: { id: input.upvoteId }
+      where: { id: input.feedbackId }
     })
 
     if (!feedback) {
