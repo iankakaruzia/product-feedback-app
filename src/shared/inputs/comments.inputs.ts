@@ -9,6 +9,9 @@ export const getCommentsInput = z
 export const createCommentInput = z
   .object({
     feedbackId: z.number(),
-    content: z.string()
+    content: z
+      .string()
+      .min(1, { message: "Can't be empty" })
+      .max(250, { message: "Comment can't have more than 250 characters" })
   })
   .required()
