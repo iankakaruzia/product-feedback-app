@@ -4,6 +4,7 @@
 
 ![CI/CD](https://github.com/iankakaruzia/product-feedback-app/workflows/Production%20Deployment/badge.svg)
 [![codecov](https://codecov.io/gh/iankakaruzia/product-feedback-app/branch/main/graph/badge.svg)](https://codecov.io/gh/iankakaruzia/product-feedback-app)
+![License](https://img.shields.io/github/license/iankakaruzia/product-feedback-app)
 
 This is a solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
