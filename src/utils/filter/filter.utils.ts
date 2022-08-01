@@ -8,7 +8,7 @@ export function getSortOptionFromQuery(query: ParsedUrlQuery) {
 
   const foundSortOption = sortOptions.find((option) => {
     const querySortBy = (query.sort as string).split(':')[0]
-    const queryOrderBy = (query.sort as string).split(':')[1]
+    const queryOrderBy = (query.sort as string).split(':')[1] ?? ''
 
     return (
       option.orderBy.toLowerCase() === queryOrderBy.toLowerCase() &&
@@ -22,8 +22,8 @@ export function getSortOptionFromQuery(query: ParsedUrlQuery) {
 export function getCategoryFromQuery(query: ParsedUrlQuery) {
   if (
     !query.category ||
-    query.category === 'all' ||
-    Array.isArray(query.category)
+    Array.isArray(query.category) ||
+    query.category.toLowerCase() === 'all'
   ) {
     return filterOptions[0]
   }
