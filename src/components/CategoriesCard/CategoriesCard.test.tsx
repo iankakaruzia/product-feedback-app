@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import { filterOptions } from 'utils/filter/fields'
+import { filterOptions } from 'shared/constants/feedback.constants'
 import { CategoriesCard } from './CategoriesCard'
 
 const pushMock = jest.fn()

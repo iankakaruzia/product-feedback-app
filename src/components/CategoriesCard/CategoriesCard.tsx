@@ -2,7 +2,8 @@ import { useRouter } from 'next/router'
 
 import { Badge } from 'components/Badge'
 import { useFilterBy } from 'hooks/use-filter-by'
-import { FilterOption, filterOptions } from 'utils/filter/fields'
+import { FilterOption } from 'models/feedback.model'
+import { filterOptions } from 'shared/constants/feedback.constants'
 
 export function CategoriesCard() {
   const { query, push } = useRouter()

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { filterOptions } from 'utils/filter/fields'
+import { filterOptions } from 'shared/constants/feedback.constants'
 import { FilterByProvider, useFilterBy } from './use-filter-by'
 
 jest.mock('next/router', () => ({

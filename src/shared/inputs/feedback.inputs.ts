@@ -1,10 +1,13 @@
 import { z } from 'zod'
 
-import { CATEGORIES, STATUSES } from 'shared/constants/feedback.constants'
+import {
+  CATEGORIES,
+  ORDER_BY,
+  SORT_BY,
+  STATUSES
+} from 'shared/constants/feedback.constants'
 
 const currentUserInput = z.string().optional()
-const SORT_BY = ['UPVOTES', 'COMMENTS'] as const
-const ORDER_BY = ['ASC', 'DESC'] as const
 
 export const getRoadmapReportInput = z
   .object({

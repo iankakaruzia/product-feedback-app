@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
-import { filterOptions, sortOptions } from './fields'
+import { filterOptions, sortOptions } from 'shared/constants/feedback.constants'
 
 export function getSortOptionFromQuery(query: ParsedUrlQuery) {
   if (!query.sort || Array.isArray(query.sort)) {

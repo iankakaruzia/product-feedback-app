@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
-import { Category } from 'models/feedback.model'
-import { getCategoryFromQuery } from 'utils/filter'
-import { FilterOption, filterOptions } from 'utils/filter/fields'
+import { Category, FilterOption } from 'models/feedback.model'
+import { filterOptions } from 'shared/constants/feedback.constants'
+import { getCategoryFromQuery } from 'utils/filter/filter.utils'
 
 export type FilterByContextData = {
   filterBy: FilterOption

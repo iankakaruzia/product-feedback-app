@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 
 import { AddFeedbackLink } from 'components/AddFeedbackLink'
-import { getSortOptionFromQuery } from 'utils/filter'
-import { SortOption, sortOptions } from 'utils/filter/fields'
+import { SortOption } from 'models/feedback.model'
+import { sortOptions } from 'shared/constants/feedback.constants'
+import { getSortOptionFromQuery } from 'utils/filter/filter.utils'
 import { classNames } from 'utils/styles/class-names'
 
 type BannerProps = {
