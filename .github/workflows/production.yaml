@@ -7,14 +7,33 @@ on:
     branches:
       - main
 jobs:
+  Lint-Test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Run linting
+        run: yarn lint
+      - name: Run tests and generate coverage report
+        run: yarn test:ci --coverage
+      - name: Upload coverage to Codecov
+        run: codecov/codecov-action@v3
+
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Lint Project
-        run: npm run lint
-      - name: Test Project
-        run: npm run test:ci
+      - uses: actions/checkout@v3
       - name: Install Vercel CLI
         run: npm install --global vercel@canary
       - name: Pull Vercel Environment Information
