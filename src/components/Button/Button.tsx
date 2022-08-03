@@ -11,10 +11,12 @@ export function Button({
   variant = 'default',
   icon,
   className,
+  type = 'button',
   ...props
 }: ButtonProps) {
   return (
     <button
+      type={type}
       className={classNames(
         'h-10 md:h-11 font-bold text-body3 text-center text-gray-200 rounded-xl transition-colors px-4 md:px-6 disabled:opacity-80 disabled:cursor-not-allowed',
         variant === 'default' &&
