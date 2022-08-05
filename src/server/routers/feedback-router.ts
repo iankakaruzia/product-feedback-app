@@ -86,7 +86,7 @@ export const feedbackRouter = createRouter()
   })
   .query('get-feedback', {
     input: getFeedbackInput,
-    output: feedbackOutput,
+    output: feedbackOutput.nullable(),
     async resolve({ ctx, input }) {
       const feedback = await ctx.prisma.feedback.findUnique({
         where: { id: input.feedbackId },
@@ -97,10 +97,7 @@ export const feedbackRouter = createRouter()
       })
 
       if (!feedback) {
-        throw new trpc.TRPCError({
-          code: 'NOT_FOUND',
-          message: 'Unable to find feedback with given ID'
-        })
+        return null
       }
 
       let upvoted = false

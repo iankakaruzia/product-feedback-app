@@ -29,8 +29,12 @@ function useAddCommentForm(feedbackId: number) {
     },
     resolver: zodResolver(createCommentInput)
   })
-
-  const mutation = trpc.useMutation(['comment.create-comment'])
+  const utils = trpc.useContext()
+  const mutation = trpc.useMutation(['comment.create-comment'], {
+    onSuccess: () => {
+      utils.invalidateQueries(['comment.get-comments', { feedbackId }])
+    }
+  })
 
   const onSubmit = useCallback(
     ({ content }: AddCommentFormSchema) => {
