@@ -13,7 +13,7 @@ export function BackButton({ theme = 'light' }: BackButtonProps) {
   }
 
   return (
-    <button onClick={goBack} className='flex items-center group'>
+    <button onClick={goBack} className='group flex items-center'>
       <svg xmlns='http://www.w3.org/2000/svg' width='7' height='10'>
         <path
           fill='none'

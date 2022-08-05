@@ -17,7 +17,7 @@ export function UpvoteButton({
     <button
       onClick={onClick}
       className={classNames(
-        'rounded-xl px-4 md:px-3 py-1 md:py-2 md:pt-3 text-body3 font-bold flex items-center transition-all md:flex-col',
+        'flex items-center rounded-xl px-4 py-1 text-body3 font-bold transition-all md:flex-col md:px-3 md:py-2 md:pt-3',
         isActive
           ? 'bg-blue-700 text-white hover:opacity-80'
           : 'bg-gray-200 text-gray-700 hover:bg-[#CFD7FF]',

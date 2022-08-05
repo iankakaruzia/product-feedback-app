@@ -29,7 +29,7 @@ export function TextInput<T extends FieldValues>({
       aria-invalid={hasError ? 'true' : 'false'}
       name={name}
       className={classNames(
-        'bg-gray-100 rounded-md h-12 px-4 text-body2 focus:ring-1',
+        'h-12 rounded-md bg-gray-100 px-4 text-body2 focus:ring-1',
         !!hasError
           ? 'border-red-500 focus:border-red-500 focus:ring-0'
           : 'border-none text-gray-700 focus:border-blue-700'

@@ -79,10 +79,10 @@ export function AddFeedbackTemplate() {
     useAddFeedbackForm()
 
   return (
-    <div className='px-6 pt-8 md:pt-14 pb-18 max-w-[540px] mx-auto'>
+    <div className='mx-auto max-w-[540px] px-6 pt-8 pb-18 md:pt-14'>
       <BackButton />
 
-      <div className='bg-white mt-14 rounded-xl relative pt-11 pb-6 px-6'>
+      <div className='relative mt-14 rounded-xl bg-white px-6 pt-11 pb-6'>
         <div className='absolute -top-7 left-6'>
           <Image
             src='/assets/shared/icon-new-feedback.svg'
@@ -92,7 +92,7 @@ export function AddFeedbackTemplate() {
           />
         </div>
 
-        <h1 className='text-heading3 font-bold text-gray-700 mb-6 md:mb-10'>
+        <h1 className='mb-6 text-heading3 font-bold text-gray-700 md:mb-10'>
           Create New Feedback
         </h1>
 
@@ -128,10 +128,10 @@ export function AddFeedbackTemplate() {
             errors={errors}
           />
 
-          <div className='flex flex-col mt-10 md:flex-row md:justify-end'>
+          <div className='mt-10 flex flex-col md:flex-row md:justify-end'>
             <Button
               type='submit'
-              className='mb-4 md:m-0 md:order-2 md:ml-4'
+              className='mb-4 md:order-2 md:m-0 md:ml-4'
               variant='primary'
               disabled={!isValid || loading}
             >

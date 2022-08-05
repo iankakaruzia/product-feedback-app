@@ -48,15 +48,15 @@ export function Banner({ suggestionsCount }: BannerProps) {
   }
 
   return (
-    <div className='bg-gray-800 h-14 md:h-18 flex items-center justify-between md:justify-start px-6 md:pr-3 md:rounded-xl'>
-      <div className='hidden md:flex items-center'>
+    <div className='flex h-14 items-center justify-between bg-gray-800 px-6 md:h-18 md:justify-start md:rounded-xl md:pr-3'>
+      <div className='hidden items-center md:flex'>
         <Image
           src='/assets/suggestions/icon-suggestions.svg'
           alt=''
           width={23}
           height={24}
         />
-        <span className='ml-4 mr-10 text-heading3 text-white font-bold'>
+        <span className='ml-4 mr-10 text-heading3 font-bold text-white'>
           {getBannerTitle()}
         </span>
       </div>
@@ -67,7 +67,7 @@ export function Banner({ suggestionsCount }: BannerProps) {
             <Fragment>
               <span className={classNames(open && 'text-opacity-75')}>
                 Sort by:{' '}
-                <span className='font-bold mr-2'>{sortOption.label}</span>
+                <span className='mr-2 font-bold'>{sortOption.label}</span>
               </span>
               {open ? (
                 <Image
@@ -97,7 +97,7 @@ export function Banner({ suggestionsCount }: BannerProps) {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='absolute z-10 w-64 -bottom-52 bg-white rounded-xl shadow-lg'>
+          <Menu.Items className='absolute -bottom-52 z-10 w-64 rounded-xl bg-white shadow-lg'>
             {sortOptions.map((option) => (
               <Menu.Item
                 key={`sort-option-${option.sortBy.toLowerCase()}-${option.orderBy.toLowerCase()}`}
@@ -106,7 +106,7 @@ export function Banner({ suggestionsCount }: BannerProps) {
                   <button
                     onClick={() => handleSort(option)}
                     className={classNames(
-                      'h-12 px-6 w-full text-left leading-[23px] border-t border-gray-800 border-solid border-opacity-[0.15] first:border-0 flex items-center justify-between transition-colors',
+                      'flex h-12 w-full items-center justify-between border-t border-solid border-gray-800 border-opacity-[0.15] px-6 text-left leading-[23px] transition-colors first:border-0',
                       active && 'text-purple-500'
                     )}
                   >

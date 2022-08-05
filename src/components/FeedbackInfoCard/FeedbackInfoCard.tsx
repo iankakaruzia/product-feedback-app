@@ -82,18 +82,18 @@ export function FeedbackInfoCard({
       tabIndex={isClickable ? 0 : undefined}
       onClick={goToDetails}
       className={classNames(
-        'bg-white p-6 md:px-8 md:py-7 rounded-xl relative md:flex md:items-start',
+        'relative rounded-xl bg-white p-6 md:flex md:items-start md:px-8 md:py-7',
         showStatus &&
-          `before:absolute before:h-[6px] before:top-0 before:inset-x-0 before:${
+          `before:absolute before:inset-x-0 before:top-0 before:h-[6px] before:${
             STATUS_COLORS[feedback.status]
           } before:rounded-tl-[5px] before:rounded-tr-[5px]`
       )}
     >
       <div className='md:order-1 md:pr-9'>
-        <h1 className='font-bold text-body3 text-gray-700 mb-2'>
+        <h1 className='mb-2 text-body3 font-bold text-gray-700'>
           {feedback.title}
         </h1>
-        <p className='text-body3 text-gray-500 mb-2'>{feedback.description}</p>
+        <p className='mb-2 text-body3 text-gray-500'>{feedback.description}</p>
         <Badge
           label={formatCategory(feedback.category)}
           className='mb-3 md:mb-0'
@@ -116,7 +116,7 @@ export function FeedbackInfoCard({
             width={18}
             height={16}
           />
-          <span className='ml-2 font-bold text-body3 text-gray-700'>
+          <span className='ml-2 text-body3 font-bold text-gray-700'>
             {feedback.comments.length}
           </span>
         </div>

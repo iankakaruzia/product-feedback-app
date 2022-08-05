@@ -18,7 +18,7 @@ export function Button({
     <button
       type={type}
       className={classNames(
-        'h-10 md:h-11 font-bold text-body3 text-center text-gray-200 rounded-xl transition-colors px-4 md:px-6 disabled:opacity-80 disabled:cursor-not-allowed',
+        'h-10 rounded-xl px-4 text-center text-body3 font-bold text-gray-200 transition-colors disabled:cursor-not-allowed disabled:opacity-80 md:h-11 md:px-6',
         variant === 'default' &&
           'bg-gray-700 hover:bg-gray-600 disabled:bg-gray-600',
         variant === 'primary' &&

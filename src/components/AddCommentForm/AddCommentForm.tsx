@@ -104,7 +104,7 @@ export function AddCommentForm({ feedbackId }: AddCommentFormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3 className='mb-6 font-bold text-heading3 text-gray-700'>
+      <h3 className='mb-6 text-heading3 font-bold text-gray-700'>
         Add Comment
       </h3>
 
@@ -113,7 +113,7 @@ export function AddCommentForm({ feedbackId }: AddCommentFormProps) {
         name='content'
         render={({ field: { onChange, value } }) => (
           <textarea
-            className='w-full resize-y rounded-md text-body2 min-h-[80px] bg-gray-100 focus:ring-1 border-none text-gray-700 focus:border-blue-700 placeholder:text-body3 placeholder:text-[#8C92B3]'
+            className='min-h-[80px] w-full resize-y rounded-md border-none bg-gray-100 text-body2 text-gray-700 placeholder:text-body3 placeholder:text-[#8C92B3] focus:border-blue-700 focus:ring-1'
             placeholder='Type your comment here'
             value={value || currentContent}
             onChange={(e) => {

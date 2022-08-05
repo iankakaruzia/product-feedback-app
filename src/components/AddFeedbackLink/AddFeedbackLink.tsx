@@ -4,7 +4,7 @@ import Link from 'next/link'
 export function AddFeedbackLink() {
   return (
     <Link href='/feedback/add'>
-      <a className='flex items-center h-10 md:h-11 font-bold text-body3 text-center text-gray-200 rounded-xl transition-colors px-4 md:px-6 bg-purple-700 hover:bg-purple-500'>
+      <a className='flex h-10 items-center rounded-xl bg-purple-700 px-4 text-center text-body3 font-bold text-gray-200 transition-colors hover:bg-purple-500 md:h-11 md:px-6'>
         <Image
           src='/assets/shared/icon-plus.svg'
           alt=''

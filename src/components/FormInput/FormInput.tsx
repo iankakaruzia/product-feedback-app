@@ -40,12 +40,12 @@ export function FormInput<T extends FieldValues>({
 
   return (
     <div className={classNames('flex flex-col', className && className)}>
-      <label htmlFor={id} className='text-body3 font-bold text-gray-700 mb-1'>
+      <label htmlFor={id} className='mb-1 text-body3 font-bold text-gray-700'>
         {label}
       </label>
       <span
         id={id ? `${id}-instructions` : undefined}
-        className='text-body3 text-gray-700 mb-4'
+        className='mb-4 text-body3 text-gray-700'
       >
         {helperText}
       </span>

@@ -26,7 +26,7 @@ export function CategoriesCard() {
   }
 
   return (
-    <div className='bg-white mb-6 md:m-0 rounded-xl p-6 flex gap-2 flex-wrap'>
+    <div className='mb-6 flex flex-wrap gap-2 rounded-xl bg-white p-6 md:m-0'>
       {filterOptions.map((option) => (
         <Badge
           key={`filter-option-${option.label}`}

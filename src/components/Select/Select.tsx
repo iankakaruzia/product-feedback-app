@@ -49,12 +49,12 @@ export function Select<T extends FieldValues>({
 
   return (
     <div className={classNames('flex flex-col', className && className)}>
-      <label htmlFor={id} className='text-body3 font-bold text-gray-700 mb-1'>
+      <label htmlFor={id} className='mb-1 text-body3 font-bold text-gray-700'>
         {label}
       </label>
       <span
         id={id ? `${id}-instructions` : undefined}
-        className='text-body3 text-gray-500 mb-4'
+        className='mb-4 text-body3 text-gray-500'
       >
         {helperText}
       </span>
@@ -73,7 +73,7 @@ export function Select<T extends FieldValues>({
           >
             {({ open }) => (
               <div className='relative'>
-                <Listbox.Button className='relative flex items-center justify-between px-6 w-full rounded-md bg-gray-100 h-12 focus:ring-1 border-none text-gray-700 focus:border-blue-700'>
+                <Listbox.Button className='relative flex h-12 w-full items-center justify-between rounded-md border-none bg-gray-100 px-6 text-gray-700 focus:border-blue-700 focus:ring-1'>
                   <span
                     className={classNames(
                       'text-body2',
@@ -86,7 +86,7 @@ export function Select<T extends FieldValues>({
                     <path
                       d={open ? 'M1 6l4-4 4 4' : 'M1 1l4 4 4-4'}
                       className={classNames(
-                        'stroke-2 stroke-blue-700',
+                        'stroke-blue-700 stroke-2',
                         disabled ? 'opacity-50' : 'opacity-100'
                       )}
                       fill='none'
@@ -100,7 +100,7 @@ export function Select<T extends FieldValues>({
                   leaveFrom='opacity-100'
                   leaveTo='opacity-0'
                 >
-                  <Listbox.Options className='absolute bg-white rounded-xl inset-x-0 top-0 shadow-lg'>
+                  <Listbox.Options className='absolute inset-x-0 top-0 rounded-xl bg-white shadow-lg'>
                     {options.map((option) => (
                       <Listbox.Option
                         key={`select-option-${option.value}`}
@@ -110,7 +110,7 @@ export function Select<T extends FieldValues>({
                         {({ selected, active }) => (
                           <li
                             className={classNames(
-                              'h-12 px-6 w-full text-left leading-[23px] border-t border-gray-800 border-solid border-opacity-[0.15] first:border-0 flex items-center justify-between transition-colors',
+                              'flex h-12 w-full items-center justify-between border-t border-solid border-gray-800 border-opacity-[0.15] px-6 text-left leading-[23px] transition-colors first:border-0',
                               active && 'bg-purple-700'
                             )}
                           >

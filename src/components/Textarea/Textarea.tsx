@@ -30,7 +30,7 @@ export function Textarea<T extends FieldValues>({
       rows={8}
       name={name}
       className={classNames(
-        'bg-gray-100 rounded-md h-12 px-4 text-body2 focus:ring-1 min-h-[120px]',
+        'h-12 min-h-[120px] rounded-md bg-gray-100 px-4 text-body2 focus:ring-1',
         !!hasError
           ? 'border-red-500 focus:border-red-500 focus:ring-0'
           : 'border-none text-gray-700 focus:border-blue-700'
