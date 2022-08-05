@@ -43,7 +43,7 @@ function useAddFeedbackForm() {
           toast.success('Feedback successfully added!')
         },
         onError: (error) => {
-          toast.error(`Something went wrong: ${error.message}`)
+          toast.error(error.message)
         }
       })
     },

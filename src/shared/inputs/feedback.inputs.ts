@@ -36,8 +36,8 @@ export const getSuggestionsInput = z
 export const createFeedbackInput = z
   .object({
     category: z.enum(CATEGORIES),
-    title: z.string(),
-    description: z.string()
+    title: z.string().min(1, { message: "Can't be empty" }),
+    description: z.string().min(1, { message: "Can't be empty" })
   })
   .required()
 
