@@ -67,7 +67,7 @@ export function Select<T extends FieldValues>({
             disabled={disabled}
             value={selectedOption}
             onChange={(e) => {
-              onChange(e)
+              onChange(e.value)
               setSelectedOption(e)
             }}
           >
@@ -111,7 +111,7 @@ export function Select<T extends FieldValues>({
                           <li
                             className={classNames(
                               'flex h-12 w-full items-center justify-between border-t border-solid border-gray-800 border-opacity-[0.15] px-6 text-left leading-[23px] transition-colors first:border-0',
-                              active && 'bg-purple-700'
+                              active && 'text-purple-700'
                             )}
                           >
                             <span>{option.label}</span>
