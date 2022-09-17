@@ -34,7 +34,57 @@ export function FeedbackInfoCard({
   const { push } = useRouter()
   const { updateFilterByFromCategory } = useFilterBy()
 
-  const upvoteMutation = trpc.useMutation(['upvote.update-upvote'])
+  const utils = trpc.useContext()
+  const upvoteMutation = trpc.useMutation(['upvote.update-upvote'], {
+    onMutate: async ({ feedbackId }) => {
+      await utils.cancelQuery([
+        'feedback.get-feedback',
+        { feedbackId, currentUser: user?.email ?? '' }
+      ])
+
+      const snapShotOfPreviousFeedback = utils.getQueryData([
+        'feedback.get-feedback',
+        { feedbackId, currentUser: user?.email ?? '' }
+      ])
+
+      utils.setQueryData(
+        [
+          'feedback.get-feedback',
+          { feedbackId, currentUser: user?.email ?? '' }
+        ],
+        (data) => {
+          if (!data) return null
+
+          return {
+            ...data,
+            upvoted: !data.upvoted,
+            upvotes: data.upvoted
+              ? data.upvotes.slice(0, data.upvotes.length - 1)
+              : [...data.upvotes, { id: -1, authorId: -1 }]
+          }
+        }
+      )
+
+      return {
+        snapShotOfPreviousFeedback
+      }
+    },
+    onError: (error, { feedbackId }, ctx) => {
+      utils.setQueryData(
+        [
+          'feedback.get-feedback',
+          { feedbackId, currentUser: user?.email ?? '' }
+        ],
+        ctx?.snapShotOfPreviousFeedback ?? null
+      )
+    },
+    onSettled: () => {
+      utils.invalidateQueries([
+        'feedback.get-feedback',
+        { feedbackId: feedback.id, currentUser: user?.email ?? '' }
+      ])
+    }
+  })
 
   function goToDetails() {
     if (isClickable) {
