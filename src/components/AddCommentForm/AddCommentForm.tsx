@@ -16,7 +16,7 @@ import { z } from 'zod'
 
 type AddCommentFormSchema = z.infer<typeof createCommentInput>
 
-function useAddCommentForm(feedbackId: number) {
+function useAddCommentForm(feedbackId: number, currentUser: string) {
   const {
     handleSubmit,
     control,
@@ -33,6 +33,10 @@ function useAddCommentForm(feedbackId: number) {
   const mutation = trpc.useMutation(['comment.create-comment'], {
     onSuccess: () => {
       utils.invalidateQueries(['comment.get-comments', { feedbackId }])
+      utils.invalidateQueries([
+        'feedback.get-feedback',
+        { feedbackId, currentUser }
+      ])
     }
   })
 
@@ -72,7 +76,10 @@ export function AddCommentForm({ feedbackId }: AddCommentFormProps) {
   const COMMENT_LOCAL_STORAGE_KEY = `comment_${feedbackId}`
   const { user } = useUser()
   const { push } = useRouter()
-  const { onSubmit, loading, control, errors } = useAddCommentForm(feedbackId)
+  const { onSubmit, loading, control, errors } = useAddCommentForm(
+    feedbackId,
+    user?.email ?? ''
+  )
   const [currentContent, setCurrentContent] = useState('')
 
   useEffect(() => {
