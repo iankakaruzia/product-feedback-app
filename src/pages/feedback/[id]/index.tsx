@@ -40,7 +40,11 @@ export async function getServerSideProps({
   const session = getSession(req, res)
   const currentUser = session?.user?.email ?? ''
 
-  if (!params?.id || Array.isArray(params.id) || parseInt(params.id) === NaN) {
+  if (
+    !params?.id ||
+    Array.isArray(params.id) ||
+    Number.isNaN(parseInt(params.id))
+  ) {
     return {
       notFound: true
     }
@@ -64,8 +68,6 @@ export async function getServerSideProps({
       props: {}
     }
   }
-
-  await ssg.fetchQuery('comment.get-comments', { feedbackId: feedback.id })
 
   return {
     props: {

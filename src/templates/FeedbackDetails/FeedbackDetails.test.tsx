@@ -90,17 +90,4 @@ describe('<FeedbackDetailsTemplate />', () => {
     ).toBeInTheDocument()
     expect(screen.queryByTestId('Mock Feedback Info Card')).toBeNull()
   })
-
-  it('should render loading message when there is no feedback', () => {
-    jest
-      .spyOn(trpc, 'useQuery')
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .mockReturnValueOnce({ data: null, isLoading: true } as any)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .mockReturnValueOnce({ data: commentsMock } as any)
-
-    render(<FeedbackDetailsTemplate feedbackId={1} currentUser='' />)
-
-    expect(screen.getByText('Loading...')).toBeInTheDocument()
-  })
 })
